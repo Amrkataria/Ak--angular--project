@@ -1,0 +1,31 @@
+.active-route {
+  font-weight: bolder;
+  color: rgb(20, 177, 54);
+}
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.start-100 {
+  left: 100%;
+}
+
+.translate-middle {
+  transform: translate(-50%, -50%);
+}
+
+.badge-pill {
+  border-radius: 50%;
+  background-color: #6c757d;
+  color: #fff;
+  padding: 0.25em 0.4em;
+  font-size: 0.65rem;
+}

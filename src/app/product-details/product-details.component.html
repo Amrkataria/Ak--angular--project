@@ -1,0 +1,90 @@
+<div class="card h-100">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img
+        [src]="selectedImage || productDetail.thumbnail"
+        class="img-fluid rounded-start"
+        alt="Product image"
+      />
+      <div class="thumbnail-images d-flex justify-content-center">
+        <img
+          *ngFor="let image of productDetail.images"
+          [src]="image"
+          class="img-thumbnail m-1"
+          [class.selected]="image === selectedImage"
+          (click)="selectImage(image)"
+          alt="Product thumbnail"
+          style="width: 50px; height: 50px; cursor: pointer"
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title fw-bolder">{{ productDetail.title }}</h5>
+        <p class="card-text">
+          <small class="text-muted"
+            ><span>{{ productDetail.description }}</span></small
+          >
+        </p>
+        <div class="rating">
+          <ng-container *ngFor="let star of stars; let i = index">
+            <i
+              class="fa"
+              [ngClass]="
+                i < roundedRating
+                  ? 'fa-light fa-star text-success'
+                  : 'fa-light fa-star text-muted'
+              "
+            ></i>
+          </ng-container>
+          <hr />
+          <div class="card-body">
+            <p class="card-text">
+              <small class="text-muted fw-bolder"
+                >Brand: {{ productDetail.brand }}</small
+              >
+            </p>
+            <p class="card-text fw-bold">
+              $ {{ productDetail.price }} ({{ productDetail.reviews.length }})
+            </p>
+
+            @if(productDetail.stock >0 ){
+            <span
+              class="badge text-bg-success text-capitalize fw-bolder d-flex mx-3 my-1 text-center"
+              >in stock</span
+            >
+            } @else {
+            <span
+              class="badge text-bg-danger text-capitalize fw-bolder d-flex mx-3 my-2 text-center"
+              >out of stock</span
+            >
+            }
+            <hr />
+            <div class="d-flex align-items-center">
+              <button
+                class="btn btn-success me-2"
+                (click)="decreaseQuantity(productDetail.id)"
+              >
+                -
+              </button>
+              <span>{{ quantities[productDetail.id] }}</span>
+              <button
+                class="btn btn-success ms-2"
+                (click)="increaseQuantity(productDetail.id)"
+              >
+                +
+              </button>
+            </div>
+            <button class="btn btn-outline-success mt-3">Buy Now</button>
+            <button
+              class="btn btn-outline-success mt-3 ms-2"
+              (click)="addToCart(productDetail.id)"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

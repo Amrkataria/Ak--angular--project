@@ -1,0 +1,39 @@
+.button1:hover {
+  color: black;
+  background-color: rgb(6, 77, 6);
+}
+.card {
+  margin: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
+.card-body {
+  padding: 20px;
+}
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+.card-text {
+  margin-bottom: 5px;
+}
+.availability-icon {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+.btn {
+  margin: 5px;
+}
+.price {
+  font-size: 1.5rem;
+  font-weight: bold;
+}

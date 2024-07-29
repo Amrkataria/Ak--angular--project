@@ -1,0 +1,109 @@
+<div class="container bg-light">
+  <h2 class="text-center mb-2">Register</h2>
+  <form [formGroup]="register" (ngSubmit)="handelsubmitform()">
+    <div class="form-group my-2">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Enter your name"
+        formControlName="name"
+      />
+      @if (name?.touched && name?.invalid){
+      <div class="form-text text-danger">
+        @if (name?.errors?.["required"]) {
+        <small>Required</small>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-group my-2">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        placeholder="Enter a username"
+        formControlName="username"
+      />
+      @if (username?.touched && username?.invalid){
+      <div class="form-text text-danger">
+        @if (username?.errors?.["required"]) {
+        <small>Required</small>
+        } @if (username?.errors?.["pattern"]) {
+        <small>enter valid username</small>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-group my-2">
+      <label for="email">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        formControlName="email"
+      />
+      @if (email?.touched && email?.invalid){
+      <div class="form-text text-danger">
+        @if (email?.errors?.["required"]) {
+        <small>Required</small>
+        } @if (email?.errors?.["email"]) {
+        <small>enter valid email</small>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-group my-2">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      @if (password?.touched && password?.invalid){
+      <div class="form-text text-danger">
+        @if (password?.errors?.["required"]) {
+        <small>Required</small>
+        } @if (password?.errors?.["pattern"]) {
+        <small>enter valid password</small>
+        }
+      </div>
+      }
+    </div>
+    <div class="form-group my-2">
+      <label for="repassword">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="repassword"
+        placeholder="Confirm Password"
+        formControlName="repassword"
+      />
+      @if (repassword?.touched && repassword?.invalid){
+      <div class="form-text text-danger">
+        @if (repassword?.errors?.["required"]) {
+        <small>Required</small>
+        } @if (register.errors?.["passwordsMismatch"]) {
+        <small>enter match password</small>
+        }
+      </div>
+      }
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary my-3 btn-block"
+      [disabled]="register.invalid"
+    >
+      Register
+    </button>
+  </form>
+  <div class="text-center mt-2">
+    <a routerLink="/login">Already have an account? Login here</a>
+  </div>
+</div>
