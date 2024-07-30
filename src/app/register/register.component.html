@@ -31,7 +31,7 @@
         @if (username?.errors?.["required"]) {
         <small>Required</small>
         } @if (username?.errors?.["pattern"]) {
-        <small>enter valid username</small>
+        <small>username can't contain spaces</small>
         }
       </div>
       }
@@ -70,7 +70,9 @@
         @if (password?.errors?.["required"]) {
         <small>Required</small>
         } @if (password?.errors?.["pattern"]) {
-        <small>enter valid password</small>
+        <small>Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character ($!%*?&).
+
+        </small>
         }
       </div>
       }

@@ -40,11 +40,7 @@
           <ng-container *ngFor="let star of stars; let i = index">
             <i
               class="fa fa-star"
-              [ngClass]="
-                i < roundedRating
-                  ? 'text-success'
-                  : 'text-muted'
-              "
+              [ngClass]="i < roundedRating ? 'text-success' : 'text-muted'"
             ></i>
           </ng-container>
           ({{ productDetail.reviews.length }})
@@ -82,7 +78,9 @@
               >
                 -
               </button>
-              <span class="mb-2 mb-md-0">{{ quantities[productDetail.id] }}</span>
+              <span class="mb-2 mb-md-0">{{
+                quantities[productDetail.id]
+              }}</span>
               <button
                 class="btn btn-success ms-md-2"
                 (click)="increaseQuantity(productDetail.id)"
@@ -90,7 +88,7 @@
                 +
               </button>
             </div>
-            <button class="btn btn-outline-success mt-3">Buy Now</button>
+            <button class="btn btn-danger mt-3">Buy Now</button>
             <button
               class="btn btn-outline-success mt-3 ms-2"
               (click)="addToCart(productDetail.id)"
