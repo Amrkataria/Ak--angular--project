@@ -1,4 +1,4 @@
-<div class="container bg-light">
+<div class="container">
   <form [formGroup]="register" (ngSubmit)="handelsubmitform()">
     <div class="form-group my-2 p-2">
       <label for="name">Name</label>
@@ -70,8 +70,9 @@
         @if (password?.errors?.["required"]) {
         <small>Required</small>
         } @if (password?.errors?.["pattern"]) {
-        <small>Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character ($!%*?&).
-
+        <small
+          >Password must contain at least one lowercase letter, one uppercase
+          letter, one digit, and one special character ($!%*?&).
         </small>
         }
       </div>
@@ -104,7 +105,7 @@
       Register
     </button>
   </form>
-  <div class="text-center  my-2">
+  <div class="text-center my-2">
     Already have an account?<a routerLink="/login"> Login here</a>
   </div>
 </div>
