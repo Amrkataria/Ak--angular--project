@@ -1,4 +1,4 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
@@ -7,7 +7,7 @@ import { CounterService } from '../counter.service';
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [NgClass, NgFor],
+  imports: [NgClass, NgFor,NgIf],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })

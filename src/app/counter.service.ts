@@ -9,7 +9,6 @@ export class CounterService {
   private cartCounter = new BehaviorSubject<number>(0);
 
 
-  cartArray$ = this.cartArray.asObservable();
   cartCounter$ = this.cartCounter.asObservable();
 
   constructor() { }

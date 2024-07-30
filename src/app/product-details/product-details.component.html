@@ -1,12 +1,12 @@
 <div class="card h-100">
-  <div class="row g-0">
-    <div class="col-md-6">
+  <div class="row g-5 px-3 px-md-5">
+    <div class="col-md-6 d-flex flex-column gap-4 justify-content-center">
       <img
         [src]="selectedImage || productDetail.thumbnail"
-        class="img-fluid rounded-start"
+        class="img-fluid rounded-start mx-auto bg-light"
         alt="Product image"
       />
-      <div class="thumbnail-images d-flex justify-content-center">
+      <div class="thumbnail-images d-flex flex-wrap justify-content-center">
         <img
           *ngFor="let image of productDetail.images"
           [src]="image"
@@ -14,62 +14,77 @@
           [class.selected]="image === selectedImage"
           (click)="selectImage(image)"
           alt="Product thumbnail"
-          style="width: 50px; height: 50px; cursor: pointer"
+          style="width: 60px; height: 60px; cursor: pointer"
         />
       </div>
     </div>
     <div class="col-md-6">
       <div class="card-body">
         <h5 class="card-title fw-bolder">{{ productDetail.title }}</h5>
+        <span
+          class="badge text-bg-success text-capitalize fw-bolder d-flex mx-3 my-1 text-start"
+          *ngIf="productDetail.stock > 0"
+          >in stock</span
+        >
+        <span
+          class="badge text-bg-danger text-capitalize fw-bolder d-flex mx-3 my-1 text-start"
+          *ngIf="productDetail.stock <= 0"
+          >out of stock</span
+        >
         <p class="card-text">
-          <small class="text-muted"
-            ><span>{{ productDetail.description }}</span></small
-          >
+          <small class="text-muted">
+            <span>{{ productDetail.description }}</span>
+          </small>
         </p>
         <div class="rating">
           <ng-container *ngFor="let star of stars; let i = index">
             <i
-              class="fa"
+              class="fa fa-star"
               [ngClass]="
                 i < roundedRating
-                  ? 'fa-light fa-star text-success'
-                  : 'fa-light fa-star text-muted'
+                  ? 'text-success'
+                  : 'text-muted'
               "
             ></i>
           </ng-container>
+          ({{ productDetail.reviews.length }})
           <hr />
           <div class="card-body">
             <p class="card-text">
-              <small class="text-muted fw-bolder"
+              <small class="text-muted fw-bolder badge text-bg-warning fs-6"
                 >Brand: {{ productDetail.brand }}</small
               >
-            </p>
-            <p class="card-text fw-bold">
-              $ {{ productDetail.price }} ({{ productDetail.reviews.length }})
+              <small class="text-muted fw-bolder badge text-bg-info fs-6 mx-2"
+                >Category: {{ productDetail.category }}</small
+              >
             </p>
 
-            @if(productDetail.stock >0 ){
-            <span
-              class="badge text-bg-success text-capitalize fw-bolder d-flex mx-3 my-1 text-center"
-              >in stock</span
+            <p
+              class="card-text fw-bold text-decoration-line-through text-danger"
             >
-            } @else {
-            <span
-              class="badge text-bg-danger text-capitalize fw-bolder d-flex mx-3 my-2 text-center"
-              >out of stock</span
-            >
-            }
+              {{ productDetail.price }} $
+            </p>
+            <h4 class="card-text price text-success">
+              {{
+                (
+                  productDetail.price -
+                  (productDetail.price / 100) * productDetail.discountPercentage
+                ).toFixed(2)
+              }}
+              $
+            </h4>
+
             <hr />
-            <div class="d-flex align-items-center">
+            <div class="d-flex flex-column flex-md-row align-items-center">
               <button
-                class="btn btn-success me-2"
+                class="btn btn-success mb-2 mb-md-0 me-md-2"
                 (click)="decreaseQuantity(productDetail.id)"
               >
                 -
               </button>
-              <span>{{ quantities[productDetail.id] }}</span>
+              <span class="mb-2 mb-md-0">{{ quantities[productDetail.id] }}</span>
               <button
-                class="btn btn-success ms-2"
+                class="btn btn-success ms-md-2"
                 (click)="increaseQuantity(productDetail.id)"
               >
                 +

@@ -1,42 +1,64 @@
-<div class="card h-100">
-  @if(product.stock >0 ){
-  <span class="badge text-bg-success text-capitalize w-25 fw-bolder mx-3 my-2"
-    >in stock</span
-  >
-  } @else {
-  <span
-    class="badge text-bg-danger text-capitalize w-25 fw-bolder d-flex mx-3 my-2"
-    >out stock</span
-  >
-  }
-  <img [src]="product.thumbnail" class="card-img-top" alt="..." />
+<div class="card h-100 my-2">
+  <div class="bg-light">
+    @if(product.stock > 0) {
+    <span class="badge text-bg-success text-capitalize w-25 fw-bolder mx-3 my-2"
+      >In stock</span
+    >
+    } @else {
+    <span
+      class="badge text-bg-danger text-capitalize w-25 fw-bolder d-flex mx-3 my-2"
+      >Out of stock</span
+    >
+    }
+    <img [src]="product.thumbnail" class="card-img-top" alt="..." />
+  </div>
+
   <div class="card-body">
     <div class="d-flex justify-content-between">
       <h3 class="card-title">{{ product.title }}</h3>
-
-      <h5 class="card-text price">{{ product.price }} $</h5>
     </div>
-    <hr />
-    <h4 class="card-text text-danger">{{ product.category }}</h4>
 
-    <ng-container *ngFor="let star of stars; let i = index">
-      <i
-        class="fa"
-        [ngClass]="
-          i < roundedRating
-            ? 'fa-light fa-star text-success'
-            : 'fa-light fa-star text-muted'
-        "
-      ></i>
-    </ng-container>
-    <h5 class="card-text text-dark">{{ product.brand }}</h5>
+    <div class="d-flex justify-content-between align-items-center">
+      <h4 class="card-text text-light badge text-bg-warning">
+        {{ product.category }}
+      </h4>
+      <div>
+        <span
+          class="card-text price text-decoration-line-through w-50 text-end mb-0 me-2 text-danger"
+        >
+          {{ product.price }} $
+        </span>
+        <span class="card-text price text-success">
+          {{
+            (
+              product.price -
+              (product.price / 100) * product.discountPercentage
+            ).toFixed(2)
+          }}
+          $
+        </span>
+      </div>
+    </div>
 
-    <hr />
+    <div class="d-flex align-items-center my-3">
+      <ng-container *ngFor="let star of stars; let i = index">
+        <i
+          class="fa"
+          [ngClass]="
+            i < roundedRating
+              ? 'fa-light fa-star text-success'
+              : 'fa-light fa-star text-muted'
+          "
+        ></i>
+      </ng-container>
+    </div>
+
+    <h5 class="card-text text-dark badge-pill">{{ product.brand }}</h5>
 
     <a
       [routerLink]="['product-details', product.id]"
-      class="btn btn-outline-success text-left text-dark rounded-5"
-      >details</a
+      class="btn btn-outline-success text-dark rounded-5"
+      >Add To Cart</a
     >
   </div>
 </div>
